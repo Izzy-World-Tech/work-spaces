@@ -1,94 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>YourStartup</title>
-  <meta name="description" content="A student startup prototype for BSAD 281.">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-  <!-- =========================================================
-       HEADER: logo text + navigation.
-       Each link points to a "view" further down the page (#home, #explore, #about).
-       ========================================================= -->
-  <header class="site-header">
-    <a class="brand" href="#home" id="brand-name">YourStartup</a>
-    <nav aria-label="Main">
-      <a href="#home">Home</a>
-      <a href="#explore">Explore</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- =======================================================
-         VIEW 1: HOME — what you do, for whom, and why it matters.
-         ======================================================= -->
-    <section id="home" data-view>
-      <div class="hero">
-        <p class="eyebrow">Prototype</p>
-        <h1 id="tagline">One sentence that says what your startup does.</h1>
-        <p class="lead" id="pitch">
-          Who is your customer, what problem do they have, and why is your
-          solution better than what they use today?
-        </p>
-        <a class="button" href="#explore">See it in action</a>
-      </div>
-
-      <div class="steps">
-        <div class="card">
-          <h2>1. Step one</h2>
-          <p>Describe the first thing a customer does.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plantly | Water Reminders</title>
+    <meta
+      name="description"
+      content="A plant watering tracker with countdown timers, custom plant names, and icon uploads."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap" aria-label="Plantly brand">
+          <div class="brand-mark">🌿</div>
+          <div>
+            <p class="brand-kicker">Plant care</p>
+            <h1>Plantly</h1>
+          </div>
         </div>
-        <div class="card">
-          <h2>2. Step two</h2>
-          <p>Describe what happens next.</p>
+
+        <div class="topbar-actions">
+          <button id="notification-toggle" class="toolbar-button" type="button">Enable reminders</button>
+          <button id="theme-toggle" class="toolbar-button" type="button" aria-label="Toggle dark mode">🌙 Dark mode</button>
+          <div class="status-badge" id="plant-summary">0 plants</div>
         </div>
-        <div class="card">
-          <h2>3. Step three</h2>
-          <p>Describe the result the customer gets.</p>
-        </div>
-      </div>
-    </section>
+      </header>
 
-    <!-- =======================================================
-         VIEW 2: EXPLORE — a list built from the fake data in data.js.
-         ======================================================= -->
-    <section id="explore" data-view hidden>
-      <h1>Explore</h1>
-      <p class="muted">These examples are fake. They come from <code>data.js</code>.</p>
+      <main class="app-layout">
+        <section class="panel form-panel" aria-labelledby="add-plant-heading">
+          <div class="panel-header">
+            <p class="eyebrow">Add a plant</p>
+            <h2 id="add-plant-heading">Keep your greenery happy</h2>
+          </div>
 
-      <label class="search">
-        <span>Search</span>
-        <input type="search" id="search-box" placeholder="Type to filter…">
-      </label>
+          <form id="plant-form" class="plant-form">
+            <label class="field">
+              <span>Plant name</span>
+              <input id="plant-name" name="plantName" type="text" placeholder="Monstera" maxlength="30" required />
+            </label>
 
-      <p class="muted" id="saved-count"></p>
-      <div class="grid" id="listing-grid"></div>
-      <p class="empty" id="empty-message" hidden>Nothing matches your search.</p>
-    </section>
+            <label class="field">
+              <span>Water every</span>
+              <div class="input-inline">
+                <input id="watering-interval" name="wateringInterval" type="number" min="1" max="60" value="3" required />
+                <span>days</span>
+              </div>
+            </label>
 
-    <!-- =======================================================
-         VIEW 3: ABOUT — your team and your story.
-         ======================================================= -->
-    <section id="about" data-view hidden>
-      <h1>About us</h1>
-      <p>Tell the story of why your team started this company.</p>
-      <p>Use first names only, or no names at all — this site is public.</p>
-    </section>
+            <div class="field">
+              <span>Choose an icon</span>
+              <div id="icon-grid" class="icon-grid" aria-label="Plant icon options">
+                <button type="button" class="icon-option selected" data-icon="🌱" aria-label="Plant icon leaf">🌱</button>
+                <button type="button" class="icon-option" data-icon="🌿" aria-label="Plant icon sprout">🌿</button>
+                <button type="button" class="icon-option" data-icon="🍃" aria-label="Plant icon leaf">🍃</button>
+                <button type="button" class="icon-option" data-icon="🌵" aria-label="Cactus icon">🌵</button>
+                <button type="button" class="icon-option" data-icon="🪴" aria-label="Potted plant icon">🪴</button>
+                <button type="button" class="icon-option" data-icon="🌼" aria-label="Flower icon">🌼</button>
+                <button type="button" class="icon-option" data-icon="🌳" aria-label="Tree icon">🌳</button>
+                <button type="button" class="icon-option" data-icon="🌾" aria-label="Grass icon">🌾</button>
+              </div>
+            </div>
 
-  </main>
+            <div class="field">
+              <span>Or upload your own</span>
+              <label class="upload-box" for="icon-upload">
+                <input id="icon-upload" type="file" accept="image/*" />
+                <span>Choose image</span>
+              </label>
+              <div id="upload-preview" class="upload-preview" aria-live="polite"></div>
+            </div>
 
-  <!-- Keep this footer. Your site must say it is a student project. -->
-  <footer class="site-footer">
-    <p>Student prototype for BSAD 281 at St. Francis Xavier University. Not a real company — all data is fictional.</p>
-  </footer>
+            <button type="submit" class="primary-button">Add plant</button>
+          </form>
+        </section>
 
-  <!-- Scripts load in this order: data first, then the code that uses it. -->
-  <script src="data.js"></script>
-  <script src="app.js"></script>
-</body>
+        <section class="panel list-panel" aria-labelledby="plant-list-heading">
+          <div class="panel-header split-header">
+            <div>
+              <p class="eyebrow">Your schedule</p>
+              <h2 id="plant-list-heading">Watering tracker</h2>
+            </div>
+            <button id="seed-demo" class="secondary-button" type="button">Load demo</button>
+          </div>
+
+          <div id="plant-list" class="plant-list" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>
